@@ -1,25 +1,42 @@
 import React from "react";
 import { Image, View, StyleSheet, Text } from "react-native";
 import StarRating from "react-native-star-rating";
+import colors from "../config/colors";
+import { LinearGradient } from "expo-linear-gradient";
 
-function Card(props) {
+function Card({ image, address1, address2, overallScore, bgColor = "noData" }) {
+  if (overallScore >= 4) {
+    bgColor = "good";
+  } else if (overallScore >= 2.5 && overallScore < 4) {
+    bgColor = "ok";
+  } else if (overallScore < 2.5 && overallScore > 0) {
+    bgColor = "bad";
+  }
+
   return (
-    <View style={styles.container}>
-      <Image source={require("../assets/apt.jpg")} style={styles.image} />
+    <LinearGradient
+      style={styles.container}
+      colors={["grey", colors[bgColor]]}
+      start={{ x: 0.5, y: 0.65 }}
+    >
+      <Image source={image} style={styles.image} />
       <View style={styles.address}>
-        <Text style={styles.address}>650 42nd Street</Text>
-        <Text style={styles.address}>New York, NY 10036</Text>
+        <Text style={styles.address}>{address1}</Text>
+        <Text style={styles.address}>{address2}</Text>
       </View>
       <View style={styles.rating}>
         <StarRating
           disabled={true}
           maxStars={5}
+          iconSet={"FontAwesome"}
+          fullStar={"star"}
           fullStarColor={"gold"}
           emptyStarColor={"black"}
-          rating={4}
+          emptyStar={"star"}
+          rating={overallScore}
         />
       </View>
-    </View>
+    </LinearGradient>
   );
 }
 
@@ -37,7 +54,6 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "green",
     margin: 15,
   },
   image: {
@@ -47,6 +63,10 @@ const styles = StyleSheet.create({
   rating: {
     paddingTop: 20,
     paddingBottom: 20,
+    shadowOffset: { width: 0, height: 4 },
+    shadowColor: colors.black,
+    shadowOpacity: 0.7,
+    shadowRadius: 8,
   },
 });
 
