@@ -3,8 +3,10 @@ export default {
   secondary: "grey",
   black: "#000",
   white: "#fff",
-  good: "#29BF12",
-  ok: "#FCF300",
-  bad: "#E70E02",
   noData: "lightgrey",
+  great: "#57e32c",
+  good: "#b7dd29",
+  ok: "#ffe234",
+  bad: "#ffa534",
+  terrible: "#ff4545",
 };

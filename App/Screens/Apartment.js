@@ -7,12 +7,22 @@ function Apartment({ route }) {
   const data = route.params.data;
   const address1 = `${data.street_number.toString()} ${data.street_name} `;
   const address2 = `${data.city}, ${data.state} ${data.zipcode.toString()}`;
+
+  const overallScore =
+    (data.avgScore_appearance +
+      data.avgScore_maintenance +
+      data.avgScore_safety +
+      data.avgScore_staff +
+      data.avgScore_noise) /
+    5;
+
   return (
     <View style={styles.background}>
       <Image style={styles.image} source={{ uri: data.photoImg }} />
       <Text style={styles.address}>{`${address1}\n${address2}`} </Text>
       <View style={styles.reportCard}>
         <ReportCard
+          overallScore={overallScore}
           avgNoise={data.avgScore_noise}
           avgAppearance={data.avgScore_appearance}
           avgSafety={data.avgScore_safety}

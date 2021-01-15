@@ -20,12 +20,24 @@ function Card({
   onPress,
   numOfReviews,
 }) {
-  if (overallScore >= 4) {
-    bgColor = "good";
-  } else if (overallScore >= 2.5 && overallScore < 4) {
-    bgColor = "ok";
-  } else if (overallScore < 2.5 && overallScore > 0) {
-    bgColor = "bad";
+  switch (true) {
+    case overallScore === 5:
+      bgColor = "great";
+      break;
+    case overallScore >= 4:
+      bgColor = "good";
+      break;
+    case overallScore >= 3:
+      bgColor = "ok";
+      break;
+    case overallScore >= 2:
+      bgColor = "bad";
+      break;
+    case overallScore >= 1:
+      bgColor = "terrible";
+    default:
+      bgColor = "noData";
+      break;
   }
 
   return (

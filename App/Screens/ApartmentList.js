@@ -18,7 +18,6 @@ function ApartmentList({ navigation }) {
 
   return (
     <Screen>
-      {console.log(apartments[1])}
       <FlatList
         data={apartments}
         keyExtractor={(apartments) => apartments.id.toString()}
@@ -36,7 +35,11 @@ function ApartmentList({ navigation }) {
               5
             }
             numOfReviews={item.all_comments.length}
-            onPress={() => navigation.navigate("Apartment", { data: item })}
+            onPress={() =>
+              navigation.navigate("Apartment", {
+                data: item,
+              })
+            }
           />
         )}
       />

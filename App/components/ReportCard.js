@@ -1,7 +1,9 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import StarRating from "react-native-star-rating";
 import Category from "./Category";
+import Grade from "../components/Grade";
 
 function ReportCard({
   avgNoise,
@@ -9,39 +11,45 @@ function ReportCard({
   avgStaff,
   avgMaintenance,
   avgAppearance,
+  overallScore,
 }) {
   return (
-    <View style={styles.reportCard}>
-      <Text style={styles.title}>Report Card</Text>
-      <Category category={avgNoise} title={"Noise"} />
-      <Category category={avgSafety} title={"Safety"} />
-      <Category category={avgStaff} title={"Staff"} />
-      <Category category={avgMaintenance} title={"Maintenance"} />
-      <Category category={avgAppearance} title={"Appearance"} />
-    </View>
+    <ScrollView style={styles.reportCard}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Report Card</Text>
+        <View style={styles.letter}>
+          {overallScore > 0 ? <Grade score={overallScore} /> : null}
+        </View>
+        <Category category={avgNoise} title={"Noise"} />
+        <Category category={avgSafety} title={"Safety"} />
+        <Category category={avgStaff} title={"Staff"} />
+        <Category category={avgMaintenance} title={"Maintenance"} />
+        <Category category={avgAppearance} title={"Appearance"} />
+      </View>
+    </ScrollView>
   );
 }
 
-console.log(arguments);
-
 const styles = StyleSheet.create({
+  container: {
+    paddingBottom: 30,
+  },
+  letter: {
+    justifyContent: "center",
+    alignSelf: "center",
+    padding: 10,
+  },
   reportCard: {
     padding: 10,
     alignSelf: "center",
     width: "90%",
-    borderColor: "#034163",
-    borderWidth: 10,
-    // overflow: "hidden",
+    borderColor: "grey",
+    borderWidth: 5,
     backgroundColor: "white",
-    shadowColor: "black",
-    shadowRadius: 5,
-    shadowOpacity: 1,
     height: 250,
-    justifyContent: "center",
   },
   title: {
     fontSize: 25,
-    justifyContent: "center",
     alignSelf: "center",
     fontWeight: "600",
     textDecorationLine: "underline",
