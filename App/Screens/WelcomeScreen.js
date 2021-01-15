@@ -4,7 +4,7 @@ import AppButton from "../components/AppButton";
 import { StatusBar } from "expo-status-bar";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 
-function WelcomeScreen(props) {
+function WelcomeScreen({ navigation }) {
   return (
     <View style={styles.layout}>
       <StatusBar barStyle="dark-content" />
@@ -18,7 +18,7 @@ function WelcomeScreen(props) {
       <View style={styles.buttonContainer}>
         <AppButton
           title="View Apartments"
-          onPress={() => Alert.alert("Apartments")}
+          onPress={() => navigation.navigate("ApartmentList")}
           color="black"
         />
         <AppButton
@@ -52,15 +52,16 @@ const styles = StyleSheet.create({
     backgroundColor: "lightgrey",
     alignItems: "center",
     justifyContent: "center",
+    flex: 1,
   },
   logoContainer: {
     alignItems: "center",
-    marginTop: 100,
+    marginTop: 40,
   },
   tagline: {
     fontSize: 30,
     fontWeight: "bold",
-    paddingVertical: 30,
+    paddingVertical: 10,
   },
 });
 
