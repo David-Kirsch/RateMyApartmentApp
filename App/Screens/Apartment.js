@@ -1,15 +1,25 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
+import StarRating from "react-native-star-rating";
+import ReportCard from "../components/ReportCard";
 
 function Apartment({ route }) {
-  console.log(route.params.item);
   const data = route.params.data;
+  const address1 = `${data.street_number.toString()} ${data.street_name} `;
+  const address2 = `${data.city}, ${data.state} ${data.zipcode.toString()}`;
   return (
     <View style={styles.background}>
       <Image style={styles.image} source={{ uri: data.photoImg }} />
-      <Text style={styles.address}>
-        {`${data.address1}\n${data.address2}`}{" "}
-      </Text>
+      <Text style={styles.address}>{`${address1}\n${address2}`} </Text>
+      <View style={styles.reportCard}>
+        <ReportCard
+          avgNoise={data.avgScore_noise}
+          avgAppearance={data.avgScore_appearance}
+          avgSafety={data.avgScore_safety}
+          avgStaff={data.avgScore_staff}
+          avgMaintenance={data.avgScore_maintenance}
+        />
+      </View>
     </View>
   );
 }
@@ -22,8 +32,10 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 20,
     paddingBottom: 10,
+    textAlign: "center",
   },
   background: {
+    flex: 1,
     backgroundColor: "#023047",
   },
   image: {
@@ -34,6 +46,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     top: 15,
   },
+  reportCard: {},
 });
 
 export default Apartment;
