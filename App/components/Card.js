@@ -18,6 +18,7 @@ function Card({
   overallScore,
   bgColor = "noData",
   onPress,
+  numOfReviews,
 }) {
   if (overallScore >= 4) {
     bgColor = "good";
@@ -35,13 +36,17 @@ function Card({
           colors={["#023047", colors[bgColor]]}
           start={{ x: 0.5, y: 0.7 }}
         >
-          <Image source={image} style={styles.image} />
+          <Image source={{ uri: image }} style={styles.image} />
           <View style={styles.address}>
-            <Text style={styles.address}>{address1}</Text>
-            <Text style={styles.address}>{address2}</Text>
+            <Text adjustsFontSizeToFit numberOfLines={1} style={styles.address}>
+              {address1}
+            </Text>
+            <Text adjustsFontSizeToFit numberOfLines={1} style={styles.address}>
+              {address2}
+            </Text>
           </View>
           <View>
-            <Text style={styles.review}>1 Review</Text>
+            <Text style={styles.review}>{`${numOfReviews} Reviews`}</Text>
           </View>
           <View style={styles.rating}>
             <StarRating

@@ -2,11 +2,11 @@ import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 
 function Apartment({ route }) {
-  console.log(route.params.data);
+  console.log(route.params.item);
   const data = route.params.data;
   return (
     <View style={styles.background}>
-      <Image style={styles.image} source={data.image} />
+      <Image style={styles.image} source={{ uri: data.photoImg }} />
       <Text style={styles.address}>
         {`${data.address1}\n${data.address2}`}{" "}
       </Text>

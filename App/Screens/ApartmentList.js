@@ -1,58 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet, FlatList, Alert } from "react-native";
 import Card from "../components/Card";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
 
 function ApartmentList({ navigation }) {
-  const apts = [
-    {
-      id: 1,
-      image: require("../assets/apt.jpg"),
-      address1: "650 W. 42nd Street",
-      address2: "New York, NY 10036",
-      overallScore: 5.0,
-    },
-    {
-      id: 2,
-      image: require("../assets/apt2.jpg"),
-      address1: "271 W. 78th street",
-      address2: "New York, NY 10024",
-      overallScore: 0,
-    },
-    {
-      id: 3,
-      image: require("../assets/apt3.jpg"),
-      address1: "3 Hudson Street",
-      address2: "New York, NY 10001",
-      overallScore: 2.5,
-    },
-    {
-      id: 4,
-      image: require("../assets/apt4.jpg"),
-      address1: "67 E. 58th Street",
-      address2: "New York, NY 10018",
-      overallScore: 1,
-    },
-    {
-      id: 5,
-      image: require("../assets/apt5.jpg"),
-      address1: "322 Broadway Avenue",
-      address2: "New York, NY 10012",
-      overallScore: 4,
-    },
-  ];
+  const [isLoading, setLoading] = useState(true);
+  const [apartments, setApartments] = useState([]);
+
+  useEffect(() => {
+    fetch("https://rate-my-landlord-api.herokuapp.com/apartments")
+      .then((resp) => resp.json())
+      .then((data) => setApartments(data))
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <Screen>
+      {console.log(apartments[1])}
       <FlatList
-        data={apts}
-        keyExtractor={(apt) => apt.id.toString()}
+        data={apartments}
+        keyExtractor={(apartments) => apartments.id.toString()}
         renderItem={({ item }) => (
           <Card
-            address1={item.address1}
-            address2={item.address2}
-            image={item.image}
-            overallScore={item.overallScore}
+            address1={`${item.street_number.toString()} ${item.street_name} `}
+            address2={`${item.city}, ${item.state} ${item.zipcode.toString()}`}
+            image={item.photoImg}
+            overallScore={
+              (item.avgScore_appearance +
+                item.avgScore_maintenance +
+                item.avgScore_safety +
+                item.avgScore_staff +
+                item.avgScore_noise) /
+              5
+            }
+            numOfReviews={item.all_comments.length}
             onPress={() => navigation.navigate("Apartment", { data: item })}
           />
         )}
