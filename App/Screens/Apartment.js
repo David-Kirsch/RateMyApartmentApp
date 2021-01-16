@@ -1,9 +1,9 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, Button } from "react-native";
 import StarRating from "react-native-star-rating";
 import ReportCard from "../components/ReportCard";
 
-function Apartment({ route }) {
+function Apartment({ route, navigation }) {
   const data = route.params.data;
   const address1 = `${data.street_number.toString()} ${data.street_name} `;
   const address2 = `${data.city}, ${data.state} ${data.zipcode.toString()}`;
@@ -30,6 +30,12 @@ function Apartment({ route }) {
           avgMaintenance={data.avgScore_maintenance}
         />
       </View>
+      <Button
+        title="Reviews"
+        onPress={() =>
+          navigation.navigate("ReviewScreen", { reviews: data.all_comments })
+        }
+      />
     </View>
   );
 }

@@ -16,6 +16,7 @@ function ApartmentList({ navigation }) {
       .finally(() => setLoading(false));
   }, []);
 
+  console.log(apartments);
   return (
     <Screen>
       <FlatList

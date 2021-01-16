@@ -1,0 +1,38 @@
+import React, { useEffect, useState } from "react";
+import { View, StyleSheet, FlatList } from "react-native";
+import ReviewCard from "../components/ReviewCard";
+
+function ReviewScreen({ route }) {
+  //   const [reviews, setReviews] = useState([]);
+  //   setReviews(route.params.reviews);
+  const reviewsArr = route.params.reviews;
+
+  console.log(reviewsArr);
+  return (
+    <View style={styles.container}>
+      <FlatList
+        data={reviewsArr}
+        keyExtractor={(reviewsArr) => reviewsArr.username}
+        renderItem={({ item }) => (
+          <ReviewCard name={item.username} review={item.review} />
+        )}
+      />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  box: {
+    width: 200,
+    height: 200,
+    backgroundColor: "red",
+  },
+  container: {
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
+    margin: 10,
+  },
+});
+
+export default ReviewScreen;

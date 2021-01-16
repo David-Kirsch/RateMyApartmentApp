@@ -36,7 +36,7 @@ function Grade({ score }) {
       <View style={[styles.circle, { backgroundColor: color }]}>
         <Text style={styles.letter}>{letter}</Text>
       </View>
-      <Text style={styles.score}>Score: {score}</Text>
+      <Text style={styles.score}>Score: {score}/5</Text>
     </View>
   );
 }
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: "center",
     borderWidth: 1,
-    shadowOffset: { x: 5, y: 5 },
+    shadowOffset: { x: 0, y: 0 },
     shadowColor: "black",
     shadowRadius: 3,
     shadowOpacity: 1,

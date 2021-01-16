@@ -62,6 +62,7 @@ function Card({
           </View>
           <View style={styles.rating}>
             <StarRating
+              disabled={true}
               iconSet={"FontAwesome"}
               halfStar={"star-half-o"}
               fullStar={"star"}

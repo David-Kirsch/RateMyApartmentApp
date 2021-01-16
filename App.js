@@ -7,6 +7,7 @@ import Screen from "./App/components/Screen";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import Apartment from "./App/Screens/Apartment";
+import ReviewScreen from "./App/Screens/ReviewScreen";
 
 const Tweets = ({ navigation }) => (
   <Screen>
@@ -30,6 +31,7 @@ const StackNavigator = () => (
     <Stack.Screen name="Rate My Apartment" component={WelcomeScreen} />
     <Stack.Screen name="ApartmentList" component={ApartmentList} />
     <Stack.Screen name="Apartment" component={Apartment} />
+    <Stack.Screen name="ReviewScreen" component={ReviewScreen} />
   </Stack.Navigator>
 );
 
