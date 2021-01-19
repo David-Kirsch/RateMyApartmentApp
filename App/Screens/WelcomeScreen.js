@@ -1,13 +1,12 @@
 import React from "react";
 import { Image, View, StyleSheet, Alert, Text, Dimensions } from "react-native";
 import AppButton from "../components/AppButton";
-import { StatusBar } from "expo-status-bar";
 import { Colors } from "react-native/Libraries/NewAppScreen";
+import { StatusBar } from "expo-status-bar";
 
 function WelcomeScreen({ navigation }) {
   return (
     <View style={styles.layout}>
-      <StatusBar barStyle="dark-content" />
       <View style={styles.logoContainer}>
         <Image
           style={styles.image}

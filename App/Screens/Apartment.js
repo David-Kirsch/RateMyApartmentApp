@@ -1,7 +1,18 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, Button } from "react-native";
-import StarRating from "react-native-star-rating";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Button,
+  TouchableOpacity,
+} from "react-native";
 import ReportCard from "../components/ReportCard";
+import {
+  MaterialCommunityIcons,
+  Octicons,
+  AntDesign,
+} from "@expo/vector-icons";
 
 function Apartment({ route, navigation }) {
   const data = route.params.data;
@@ -30,12 +41,41 @@ function Apartment({ route, navigation }) {
           avgMaintenance={data.avgScore_maintenance}
         />
       </View>
-      <Button
-        title="Reviews"
-        onPress={() =>
-          navigation.navigate("ReviewScreen", { reviews: data.all_comments })
-        }
-      />
+      <View style={styles.links}>
+        <TouchableOpacity
+          style={styles.reviewBtn}
+          onPress={() =>
+            navigation.navigate("ReviewScreen", {
+              reviews: data.all_comments,
+            })
+          }
+        >
+          <MaterialCommunityIcons
+            name="comment-text-outline"
+            size={25}
+            color="black"
+          />
+          <Text style={{ color: "black", fontWeight: "600" }}>Reviews</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.reviewBtn}
+          onPress={() =>
+            navigation.navigate("ReviewScreen", { reviews: data.all_comments })
+          }
+        >
+          <Octicons name="alert" size={25} color="#910606" />
+          <Text style={{ color: "black", fontWeight: "600" }}>Violoations</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.reviewBtn}
+          onPress={() =>
+            navigation.navigate("ReviewScreen", { reviews: data.all_comments })
+          }
+        >
+          <AntDesign name="Safety" size={25} color="green" />
+          <Text style={{ color: "black", fontWeight: "600" }}>Safety</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -62,7 +102,20 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     top: 15,
   },
-  reportCard: {},
+  links: {
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  reviewBtn: {
+    backgroundColor: "lightgrey",
+    width: 80,
+    height: 70,
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 10,
+    borderRadius: 10,
+    marginLeft: 20,
+  },
 });
 
 export default Apartment;

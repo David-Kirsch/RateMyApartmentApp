@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet, FlatList } from "react-native";
 import ReviewCard from "../components/ReviewCard";
+import Screen from "../components/Screen";
 
 function ReviewScreen({ route }) {
   //   const [reviews, setReviews] = useState([]);
@@ -9,15 +10,17 @@ function ReviewScreen({ route }) {
 
   console.log(reviewsArr);
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={reviewsArr}
-        keyExtractor={(reviewsArr) => reviewsArr.username}
-        renderItem={({ item }) => (
-          <ReviewCard name={item.username} review={item.review} />
-        )}
-      />
-    </View>
+    <Screen>
+      <View style={styles.container}>
+        <FlatList
+          data={reviewsArr}
+          keyExtractor={(reviewsArr) => reviewsArr.username}
+          renderItem={({ item }) => (
+            <ReviewCard name={item.username} review={item.review} />
+          )}
+        />
+      </View>
+    </Screen>
   );
 }
 
