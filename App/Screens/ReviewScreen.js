@@ -4,8 +4,6 @@ import ReviewCard from "../components/ReviewCard";
 import Screen from "../components/Screen";
 
 function ReviewScreen({ route }) {
-  //   const [reviews, setReviews] = useState([]);
-  //   setReviews(route.params.reviews);
   const reviewsArr = route.params.reviews;
 
   console.log(reviewsArr);

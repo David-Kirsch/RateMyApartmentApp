@@ -27,6 +27,7 @@ function Apartment({ route, navigation }) {
       data.avgScore_noise) /
     5;
 
+  console.log(process.env.REACT_APP_NYC_OPEN_DATA_TOKEN);
   return (
     <View style={styles.background}>
       <Image style={styles.image} source={{ uri: data.photoImg }} />
@@ -41,9 +42,9 @@ function Apartment({ route, navigation }) {
           avgMaintenance={data.avgScore_maintenance}
         />
       </View>
-      <View style={styles.links}>
+      <View style={styles.tabs}>
         <TouchableOpacity
-          style={styles.reviewBtn}
+          style={styles.iconBtn}
           onPress={() =>
             navigation.navigate("ReviewScreen", {
               reviews: data.all_comments,
@@ -58,16 +59,19 @@ function Apartment({ route, navigation }) {
           <Text style={{ color: "black", fontWeight: "600" }}>Reviews</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.reviewBtn}
+          style={styles.iconBtn}
           onPress={() =>
-            navigation.navigate("ReviewScreen", { reviews: data.all_comments })
+            navigation.navigate("ViolationScreen", {
+              street_number: data.street_number,
+              street_name: data.street_name,
+            })
           }
         >
           <Octicons name="alert" size={25} color="#910606" />
           <Text style={{ color: "black", fontWeight: "600" }}>Violoations</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.reviewBtn}
+          style={styles.iconBtn}
           onPress={() =>
             navigation.navigate("ReviewScreen", { reviews: data.all_comments })
           }
@@ -94,6 +98,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#023047",
   },
+  iconBtn: {
+    backgroundColor: "lightgrey",
+    width: 80,
+    height: 70,
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 10,
+    borderRadius: 10,
+    marginLeft: 10,
+  },
   image: {
     width: "90%",
     height: 300,
@@ -102,19 +116,9 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     top: 15,
   },
-  links: {
+  tabs: {
     flexDirection: "row",
     justifyContent: "center",
-  },
-  reviewBtn: {
-    backgroundColor: "lightgrey",
-    width: 80,
-    height: 70,
-    justifyContent: "center",
-    alignItems: "center",
-    margin: 10,
-    borderRadius: 10,
-    marginLeft: 20,
   },
 });
 

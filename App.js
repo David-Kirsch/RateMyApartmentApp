@@ -1,16 +1,14 @@
 import React from "react";
 import { Alert, Button, StyleSheet, Text, View } from "react-native";
-import Card from "./App/components/Card";
 import ApartmentList from "./App/Screens/ApartmentList";
 import WelcomeScreen from "./App/Screens/WelcomeScreen";
-import Screen from "./App/components/Screen";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import Apartment from "./App/Screens/Apartment";
 import ReviewScreen from "./App/Screens/ReviewScreen";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialIcons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
+import ViolationScreen from "./App/Screens/ViolationScreen";
 
 let user = 1;
 
@@ -60,6 +58,11 @@ const StackNavigator = () => (
       name="ReviewScreen"
       options={{ title: "Reviews" }}
       component={ReviewScreen}
+    />
+    <Stack.Screen
+      name="ViolationScreen"
+      options={{ title: "Violations", headerStyle: { backgroundColor: "red" } }}
+      component={ViolationScreen}
     />
   </Stack.Navigator>
 );
