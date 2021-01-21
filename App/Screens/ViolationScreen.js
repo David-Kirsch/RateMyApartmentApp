@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { FlatList, Text, View } from "react-native";
+import { FlatList, Text, View, StyleSheet } from "react-native";
 import { keys } from "../../keys";
 import Screen from "../components/Screen";
 import ViolationCard from "../components/ViolationCard";
+import colors from "../config/colors";
 
 function ViolationScreen({ route }) {
   const [violations, setViolations] = useState([]);
@@ -39,9 +40,14 @@ function ViolationScreen({ route }) {
 
   return (
     <Screen>
-      <Text>
-        Open: {getCount()} Closed: {violations.length - getCount()}{" "}
-      </Text>
+      <View style={styles.container}>
+        <Text style={[styles.snapshot, { color: colors.redStatus }]}>
+          Open: {getCount()}
+        </Text>
+        <Text style={[styles.snapshot, { color: colors.greenStatus }]}>
+          Closed: {violations.length - getCount()}
+        </Text>
+      </View>
       <FlatList
         data={violations}
         keyExtractor={(violation) => violation.violationid}
@@ -50,5 +56,20 @@ function ViolationScreen({ route }) {
     </Screen>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "black",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+  },
+  snapshot: {
+    color: "white",
+    padding: 15,
+    fontWeight: "600",
+    fontSize: 20,
+    textAlign: "center",
+  },
+});
 
 export default ViolationScreen;

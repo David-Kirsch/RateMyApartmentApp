@@ -5,7 +5,7 @@ import StarRating from "react-native-star-rating";
 function Category({ category, title }) {
   return (
     <View style={styles.category}>
-      <Text style={styles.title}>Average {title}: </Text>
+      <Text style={styles.title}>{title}: </Text>
       <StarRating
         iconSet={"FontAwesome"}
         halfStar={"star-half-o"}

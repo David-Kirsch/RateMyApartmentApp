@@ -20,11 +20,11 @@ function ReportCard({
         <View style={styles.letter}>
           {overallScore > 0 ? <Grade score={overallScore} /> : null}
         </View>
-        <Category category={avgNoise} title={"Noise"} />
-        <Category category={avgSafety} title={"Safety"} />
-        <Category category={avgStaff} title={"Staff"} />
-        <Category category={avgMaintenance} title={"Maintenance"} />
-        <Category category={avgAppearance} title={"Appearance"} />
+        <Category category={avgNoise} title={"Average Noise"} />
+        <Category category={avgSafety} title={"Average Safety"} />
+        <Category category={avgStaff} title={"Average Staff"} />
+        <Category category={avgMaintenance} title={"Average Maintenance"} />
+        <Category category={avgAppearance} title={"Average Appearance"} />
       </View>
     </ScrollView>
   );

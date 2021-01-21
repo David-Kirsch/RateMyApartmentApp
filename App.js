@@ -1,34 +1,51 @@
-import React from "react";
-import { Alert, Button, StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import {
+  Alert,
+  Button,
+  StyleSheet,
+  Text,
+  View,
+  AsyncStorage,
+} from "react-native";
 import ApartmentList from "./App/Screens/ApartmentList";
 import WelcomeScreen from "./App/Screens/WelcomeScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import Apartment from "./App/Screens/Apartment";
 import ReviewScreen from "./App/Screens/ReviewScreen";
-import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialIcons, AntDesign } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import ViolationScreen from "./App/Screens/ViolationScreen";
+import ProfileScreen from "./App/Screens/ProfileScreen";
+import AuthContext from "./App/auth/context";
 
-let user = 1;
+let user = 0;
 
 const Stack = createStackNavigator();
 const StackNavigator = () => (
   <Stack.Navigator
-    screenOptions={{
+    screenOptions={({ navigation }) => ({
       headerRight: () =>
-        user && (
+        user > 0 ? (
           <MaterialIcons
             name="account-circle"
             size={40}
             color="white"
-            onPress={() => Alert.alert("Pressed")}
             style={styles.icon}
+            onPress={() => navigation.navigate("ProfileScreen")}
+          />
+        ) : (
+          <AntDesign
+            name="home"
+            size={30}
+            color="white"
+            style={styles.icon}
+            onPress={() => navigation.navigate("Rate My Apartment")}
           />
         ),
       headerStyle: { backgroundColor: "#031e2b" },
       headerTintColor: "white",
-    }}
+    })}
   >
     {!user && (
       <Stack.Screen
@@ -64,17 +81,24 @@ const StackNavigator = () => (
       options={{ title: "Violations", headerStyle: { backgroundColor: "red" } }}
       component={ViolationScreen}
     />
+    <Stack.Screen
+      name="ProfileScreen"
+      options={{ title: "Profile", headerRight: () => "" }}
+      component={ProfileScreen}
+    />
   </Stack.Navigator>
 );
 
 export default function App() {
+  const [user, setUser] = useState();
+
   return (
-    <>
+    <AuthContext.Provider value={{ user, setUser }}>
       <NavigationContainer>
         <StatusBar style="light" />
         <StackNavigator />
       </NavigationContainer>
-    </>
+    </AuthContext.Provider>
   );
 }
 

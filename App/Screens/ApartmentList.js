@@ -1,15 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, FlatList, Alert } from "react-native";
+import { View, StyleSheet, FlatList, Alert, Button } from "react-native";
 import Card from "../components/Card";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
+import { baseURL } from "../../keys";
+import { MaterialIcons } from "@expo/vector-icons";
 
 function ApartmentList({ navigation }) {
   const [isLoading, setLoading] = useState(true);
   const [apartments, setApartments] = useState([]);
 
+  // React.useLayoutEffect(() => {
+  //   navigation.setOptions({
+  //     headerRight: () => (
+  //       <MaterialIcons
+  //         name="account-circle"
+  //         size={40}
+  //         color="white"
+  //         style={styles.icon}
+  //         onPress={() => navigation.navigate("ProfileScreen")}
+  //       />
+  //     ),
+  //   });
+  // }, [navigation]);
+
   useEffect(() => {
-    fetch("https://rate-my-landlord-api.herokuapp.com/apartments")
+    fetch(`${baseURL}/apartments`)
       .then((resp) => resp.json())
       .then((data) => setApartments(data))
       .catch((error) => console.error(error))
@@ -47,5 +63,11 @@ function ApartmentList({ navigation }) {
     </Screen>
   );
 }
+
+const styles = StyleSheet.create({
+  icon: {
+    right: 15,
+  },
+});
 
 export default ApartmentList;

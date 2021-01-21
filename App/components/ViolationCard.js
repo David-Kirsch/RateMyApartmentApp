@@ -2,29 +2,29 @@ import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import colors from "../config/colors";
 
-function ViolationCard({ data, colorStatus = "terrible" }) {
+function ViolationCard({ data, colorStatus = "redStatus" }) {
   if (data.violationstatus === "Open") {
-    colorStatus = "terrible";
+    colorStatus = "redStatus";
   } else {
-    colorStatus = "great";
+    colorStatus = "greenStatus";
   }
 
   const date = data.inspectiondate.split("T");
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: colors[colorStatus] }]}>
       <View style={styles.statusContainer}>
         <Text style={styles.status}>Violation Data Issued: </Text>
         <Text>{date[0]}</Text>
       </View>
       <View style={styles.statusContainer}>
         <Text style={styles.status}>Status of Violation: </Text>
-        <Text style={[styles.status, { color: colors[colorStatus] }]}>
-          {data.violationstatus}
-        </Text>
+        <Text style={styles.status}>{data.violationstatus}</Text>
       </View>
       <View>
-        <Text style={styles.status}>Description of Violation: </Text>
-        <Text>{data.novdescription}</Text>
+        <Text style={styles.status}>
+          Description of Violation:
+          <Text style={{ fontWeight: "400" }}> {data.novdescription}</Text>{" "}
+        </Text>
       </View>
     </View>
   );

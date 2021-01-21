@@ -9,4 +9,6 @@ export default {
   ok: "#ffe234",
   bad: "#ffa534",
   terrible: "#ff4545",
+  greenStatus: "#77bf84",
+  redStatus: "#c98383",
 };

@@ -3,6 +3,7 @@ import { Image, View, StyleSheet, Alert, Text, Dimensions } from "react-native";
 import AppButton from "../components/AppButton";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { StatusBar } from "expo-status-bar";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function WelcomeScreen({ navigation }) {
   return (
