@@ -6,7 +6,6 @@ import Screen from "../components/Screen";
 function ReviewScreen({ route }) {
   const reviewsArr = route.params.reviews;
 
-  console.log(reviewsArr);
   return (
     <Screen>
       <View style={styles.container}>

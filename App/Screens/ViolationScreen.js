@@ -22,7 +22,6 @@ function ViolationScreen({ route }) {
       },
     };
 
-    console.log(street_name_URI);
     fetch(
       `https://data.cityofnewyork.us/resource/wvxf-dwi5.json?housenumber=${street_number_string}&streetname=${street_name_URI}`,
       config

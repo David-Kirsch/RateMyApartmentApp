@@ -35,6 +35,7 @@ function Card({
       break;
     case overallScore >= 1:
       bgColor = "terrible";
+      break;
     default:
       bgColor = "noData";
       break;

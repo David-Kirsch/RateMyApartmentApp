@@ -10,20 +10,6 @@ function ApartmentList({ navigation }) {
   const [isLoading, setLoading] = useState(true);
   const [apartments, setApartments] = useState([]);
 
-  // React.useLayoutEffect(() => {
-  //   navigation.setOptions({
-  //     headerRight: () => (
-  //       <MaterialIcons
-  //         name="account-circle"
-  //         size={40}
-  //         color="white"
-  //         style={styles.icon}
-  //         onPress={() => navigation.navigate("ProfileScreen")}
-  //       />
-  //     ),
-  //   });
-  // }, [navigation]);
-
   useEffect(() => {
     fetch(`${baseURL}/apartments`)
       .then((resp) => resp.json())
@@ -32,7 +18,6 @@ function ApartmentList({ navigation }) {
       .finally(() => setLoading(false));
   }, []);
 
-  console.log(apartments);
   return (
     <Screen>
       <FlatList

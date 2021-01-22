@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Image, View, StyleSheet, Alert, Text, Dimensions } from "react-native";
 import AppButton from "../components/AppButton";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { StatusBar } from "expo-status-bar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import AuthContext from "../auth/context";
 
 function WelcomeScreen({ navigation }) {
+  const authContext = useContext(AuthContext);
+
+  const signin = () => {
+    authContext.setUser("17");
+  };
+
   return (
     <View style={styles.layout}>
       <View style={styles.logoContainer}>
@@ -21,11 +28,7 @@ function WelcomeScreen({ navigation }) {
           onPress={() => navigation.navigate("ApartmentList")}
           color="black"
         />
-        <AppButton
-          title="Sign in"
-          onPress={() => Alert.alert("Login")}
-          color="secondary"
-        />
+        <AppButton title="Sign in" onPress={() => signin()} color="secondary" />
         <AppButton
           title="New User"
           onPress={() => Alert.alert("Register")}

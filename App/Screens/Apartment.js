@@ -27,7 +27,6 @@ function Apartment({ route, navigation }) {
       data.avgScore_noise) /
     5;
 
-  console.log(process.env.REACT_APP_NYC_OPEN_DATA_TOKEN);
   return (
     <View style={styles.background}>
       <Image style={styles.image} source={{ uri: data.photoImg }} />
