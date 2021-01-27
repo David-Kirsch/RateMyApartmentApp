@@ -13,15 +13,18 @@ function ProfileScreen({ navigation }) {
       .then((resp) => resp.json())
       .then((data) => {
         setUserData(data);
+      })
+      .catch(function (error) {
+        console.log(
+          "There has been a problem with your fetch operation: " + error.message
+        );
       });
   }, []);
 
   const logout = () => {
-    authContext.setUser("0");
+    authContext.setUser(undefined);
   };
-  console.log("---------------------------------");
-  console.log("USERDATA ", userData.my_comments);
-  console.log("------------------------------");
+
   const name = userData["username"];
 
   return (
@@ -30,9 +33,13 @@ function ProfileScreen({ navigation }) {
       <View style={styles.myReviews}>
         <FlatList
           data={userData.my_comments}
-          keyExtractor={(review) => review.review.id}
+          keyExtractor={(review) => review.review.id.toString()}
           renderItem={({ item }) => (
-            <ReviewCard name={name} review={item.review} key={item.review.id} />
+            <ReviewCard
+              name={name}
+              review={item.review}
+              key={item.review.id.toString()}
+            />
           )}
         />
       </View>

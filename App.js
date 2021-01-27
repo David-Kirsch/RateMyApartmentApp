@@ -20,7 +20,7 @@ import ProfileScreen from "./App/Screens/ProfileScreen";
 import AuthContext from "./App/auth/context";
 
 export default function App() {
-  const [user, setUser] = useState("0");
+  const [user, setUser] = useState(undefined);
 
   const Stack = createStackNavigator();
   const StackNavigator = () => (
@@ -29,7 +29,7 @@ export default function App() {
         gestureEnabled: false,
         headerBackTitle: "Back",
         headerRight: () =>
-          user != "0" ? (
+          user != undefined ? (
             <MaterialIcons
               name="account-circle"
               size={40}
@@ -50,7 +50,7 @@ export default function App() {
         headerTintColor: "white",
       })}
     >
-      {user === "0" && (
+      {user === undefined && (
         <Stack.Screen
           name="Rate My Apartment"
           component={WelcomeScreen}
@@ -97,7 +97,6 @@ export default function App() {
     </Stack.Navigator>
   );
 
-  console.log("APP: ", user);
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <NavigationContainer>

@@ -19,8 +19,6 @@ function ReviewCard({ name, review }) {
       review.rating_staff) /
     5;
 
-  console.log("CARD!! ", review);
-
   return (
     <View style={styles.container}>
       <View style={styles.reviewData}>
